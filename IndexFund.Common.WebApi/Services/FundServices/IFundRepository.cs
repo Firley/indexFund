@@ -8,9 +8,9 @@ namespace IndexFund.Common.WebApi.Services
 {
     public interface IFundRepository
     {
-        Task AddFundAsync(Entities.Fund fundToAdd);
-        Task<Entities.Fund> GetFundAsync(int fundId);
-        Task<PagedList<Entities.Fund?>> GetFundsAsync(FundResourceParameters fundResourceParameters);
+        Task AddFundAsync(Fund fundToAdd);
+        Task<Fund?> GetFundAsync(int fundId);
+        Task<PagedList<Fund?>> GetFundsAsync(FundResourceParameters fundResourceParameters);
         Task<bool> SaveAsync();
     }
 }
