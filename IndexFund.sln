@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IndexFund.Common.WebApi", "IndexFund.Common.WebApi\IndexFund.Common.WebApi.csproj", "{37573804-2A1A-4C1D-A42F-ED164F47CA5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndexFund.Common.Tests", "IndexFund.Common.Tests\IndexFund.Common.Tests.csproj", "{E8BC2150-0448-4C3D-96FB-10BE730FFA61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37573804-2A1A-4C1D-A42F-ED164F47CA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37573804-2A1A-4C1D-A42F-ED164F47CA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37573804-2A1A-4C1D-A42F-ED164F47CA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37573804-2A1A-4C1D-A42F-ED164F47CA5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8BC2150-0448-4C3D-96FB-10BE730FFA61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8BC2150-0448-4C3D-96FB-10BE730FFA61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8BC2150-0448-4C3D-96FB-10BE730FFA61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8BC2150-0448-4C3D-96FB-10BE730FFA61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D00B20C7-D8A6-47CD-A5CB-06FA51B52B2D}
+	EndGlobalSection
+EndGlobal
