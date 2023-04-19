@@ -21,7 +21,7 @@ namespace IndexFund.Common.Tests.Unit
         [Fact]
         public void FundResourceParameters_PageSizeCannotBeNegative()
         {
-            var fundsearchResource = new FundResourceParameters() { PageSize= -1};
+            var fundsearchResource = new FundResourceParameters() { PageSize = -1 };
             Assert.Equal(10, fundsearchResource.PageSize);
         }
 
@@ -29,7 +29,7 @@ namespace IndexFund.Common.Tests.Unit
         public void FundResourceParameters_PageNumberCannotBeNegative()
         {
             var fundsearchResource = new FundResourceParameters() { PageNumber = -1 };
-            Assert.Equal(1, fundsearchResource.PageNumber);          
+            Assert.Equal(1, fundsearchResource.PageNumber);
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace IndexFund.Common.Tests.Unit
         [Fact]
         public void FundResourceParameters_OrderBySmallCharsAreConvertedToUpperChars()
         {
-            var fundsearchResource = new FundResourceParameters() { OrderBy = "id"};
+            var fundsearchResource = new FundResourceParameters() { OrderBy = "id" };
             Assert.Equal("ID", fundsearchResource.OrderBy);
 
         }

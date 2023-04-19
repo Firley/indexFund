@@ -23,7 +23,7 @@ namespace IndexFund.Common.WebApi.Controllers
         }
 
         [HttpGet(Name = "GetFunds")]
-        public async Task<ActionResult<IEnumerable<Models.FundDTO>>> GetFunds([FromQuery] FundResourceParameters fundResource)
+        public async Task<ActionResult<IEnumerable<FundDTO>>> GetFunds([FromQuery] FundResourceParameters fundResource)
         {
             var funds = await fundRepository.GetFundsAsync(fundResource);
             var previousLink = funds.HasPrevious ? CreateFundsResourceUri(fundResource, ResourceUriType.PreviousPage) : null;
@@ -32,13 +32,13 @@ namespace IndexFund.Common.WebApi.Controllers
             var paginationMetadata = new PaginationMetadata(funds.TotalCount,funds.PageSize,funds.CurrentPage,previousLink,nextLink, currentLink);
 
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
-            return base.Ok(mapper.Map<IEnumerable<Models.FundDTO>>(funds));
+            return base.Ok(mapper.Map<IEnumerable<FundDTO>>(funds));
         }
 
         [HttpGet("{fundId}", Name = "GetFund")]
-        public async Task<ActionResult<Entities.Fund>> Getfund(int fundId)
+        public async Task<ActionResult<FundDTO>> Getfund(int fundId)
         {
-            return Ok(await fundRepository.GetFundAsync(fundId));
+            return Ok(mapper.Map<FundDTO>(await fundRepository.GetFundAsync(fundId)));
         }
 
 

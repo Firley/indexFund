@@ -27,7 +27,7 @@ namespace IndexFund.Common.WebApi.Services
 
         public async Task<Fund?> GetFundAsync(int fundId)
         {
-            return await fundDbContext.Funds.FirstOrDefaultAsync(f => f.Id == fundId);
+            return await fundDbContext.Funds.Include(f => f.Category).FirstOrDefaultAsync(f => f.Id == fundId);
         }
 
         public async Task<PagedList<Fund?>> GetFundsAsync(FundResourceParameters fundResource)

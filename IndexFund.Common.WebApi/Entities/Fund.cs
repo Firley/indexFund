@@ -30,6 +30,6 @@ namespace IndexFund.Common.WebApi.Entities
         public string PayoutCurrency { get; set; } = "PLN";
         public DateTime FundStartDate { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; } = null!;
+        public virtual Category Category { get; set; } = null!;
     }
 }
