@@ -4,9 +4,9 @@ namespace IndexFund.Common.WebApi.Models
 {
     public class FundUserCreditensialsDTO
     {
-        [Required, EmailAddress]
+        [EmailAddress]
         public string Email { get; set; }
-        [Required, MinLength(6)]
+        [MinLength(6), MaxLength(64)]
         public string Password { get; set; }
     }
 }

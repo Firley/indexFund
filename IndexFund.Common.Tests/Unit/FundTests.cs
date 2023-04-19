@@ -15,8 +15,8 @@ namespace IndexFund.Common.Tests.Unit
             var fund = new Fund
             {
                 Id = 1,
-                Name = "Index Fund Polish stocks ",
-                ShortName = "Index Polish stocks ",
+                Name = "Index Fund Polish stocks",
+                ShortName = "Index Polish stocks",
                 Benchmark = "Vanguard S&P 500 ETF",
                 RiskLevel = 3,
                 FirstMinimalPayment = 500,

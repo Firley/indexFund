@@ -7,22 +7,22 @@ namespace IndexFund.Common.WebApi.Entities
     {
         public int Id { get; set; }
         [MaxLength(128)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         [MaxLength(64)]
-        public string ShortName { get; set; }
-        public string Benchmark { get; set; }
+        public string ShortName { get; set; } = string.Empty;
+        public string Benchmark { get; set; } = string.Empty;
         [Range(1, 5)]
         public int RiskLevel { get; set; }
         [Range(100, 5000)]
-        [Precision(5, 2)]
+        [Precision(7, 3)]
         public decimal FirstMinimalPayment { get; set; }
-        [Precision(5, 2)]
+        [Precision(7, 3)]
         public decimal MinimalPayment { get; set; }
-        [Precision(5, 2)]
+        [Precision(7, 3)]
         public decimal ManagementFee { get; set; }
-        [Precision(5, 2)]
+        [Precision(7, 3)]
         public decimal HandlingFee { get; set; }
-        [Precision(5, 2)]
+        [Precision(7, 3)]
         public decimal UnitPrice { get; set; }
         public bool IsActive { get; set; } = false;
         public string InternalCurrency { get; set; } = "PLN";

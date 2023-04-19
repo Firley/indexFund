@@ -12,14 +12,14 @@ namespace IndexFund.Common.WebApi.ResourceParameters
         public string? CategoryName { get; set; }
         public string? SearchQuery { get; set; }
 
-        private string? _orderBy;
+        private string? orderBy;
         public string? OrderBy
         {
-            get { return _orderBy; }
+            get { return orderBy; }
             set 
             {
                 var valueUpper = value?.ToUpper();
-                _orderBy = allowedOrderByColumnNames.Select(i => i.ToUpper()).Contains(valueUpper) ? _orderBy = valueUpper : _orderBy = nameof(Fund.Name).ToUpper();
+                orderBy = allowedOrderByColumnNames.Select(i => i.ToUpper()).Contains(valueUpper) ? orderBy = valueUpper : orderBy = nameof(Fund.Name).ToUpper();
             }
         }
         public SortDirection SortDirection { get; set; } = SortDirection.ASC;

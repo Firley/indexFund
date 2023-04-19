@@ -32,7 +32,7 @@ namespace IndexFund.Common.WebApi
             {
                 new Role {Id = 1,Name = "Normal"},
                 new Role {Id = 2,Name = "Moderator"},
-                new Role {Id = 3, Name = "Admin"},
+                new Role {Id = 3,Name = "Admin"},
             };
             modelBuilder.Entity<Role>().HasData(roles);
 
