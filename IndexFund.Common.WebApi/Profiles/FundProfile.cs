@@ -8,6 +8,7 @@ namespace IndexFund.Common.WebApi.Profiles
         {
             CreateMap<Models.FundForCreationDTO, Entities.Fund>();
             CreateMap<Entities.Fund, Models.FundDTO>();
+            CreateMap<Models.FundForUpdateDTO, Entities.Fund>();
         }
     }
 }

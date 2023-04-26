@@ -20,6 +20,17 @@ namespace IndexFund.Common.WebApi.Services
         {
             await fundDbContext.Funds.AddAsync(fundToAdd);
         }
+
+        public async Task<bool> CheckFundNamesUniquenessAsync(Fund fundToUpdate)
+        {
+            if (await fundDbContext.Funds.Where(f => f.Id !=fundToUpdate.Id)
+                .AnyAsync(f => f.Name == fundToUpdate.Name || f.ShortName== fundToUpdate.ShortName))
+            {
+                return false;
+            }
+            return true;
+        }
+
         public async Task<bool> SaveAsync()
         {
             return (await fundDbContext.SaveChangesAsync() >= 0);
@@ -59,7 +70,7 @@ namespace IndexFund.Common.WebApi.Services
                 };
                 var selectedColumn = columnsSelectors[fundResource.OrderBy];
 
-                collection = fundResource.SortDirection == SortDirection.ASC 
+                collection = fundResource.SortDirection == SortDirection.ASC
                     ? collection.OrderBy(selectedColumn)
                     : collection.OrderByDescending(selectedColumn);
 
@@ -68,9 +79,7 @@ namespace IndexFund.Common.WebApi.Services
 
             var totalItemCount = await collection.CountAsync();
 
-            return  (await PagedList<Fund?>.CreateAsync(collection, fundResource.PageNumber, fundResource.PageSize));                             
+            return (await PagedList<Fund?>.CreateAsync(collection, fundResource.PageNumber, fundResource.PageSize));
         }
-
-
     }
 }

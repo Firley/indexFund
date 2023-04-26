@@ -1,6 +1,6 @@
 ﻿namespace IndexFund.Common.WebApi.Models
 {
-    public class FundForCreationDTO
+    public class FundForUpdateDTO
     {
         public string Name { get; set; } = string.Empty;
         public string ShortName { get; set; } = string.Empty;

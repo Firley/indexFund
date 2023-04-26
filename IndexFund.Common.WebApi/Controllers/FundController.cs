@@ -5,6 +5,7 @@ using IndexFund.Common.WebApi.Models;
 using IndexFund.Common.WebApi.ResourceParameters;
 using IndexFund.Common.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Text.Json;
 
 namespace IndexFund.Common.WebApi.Controllers
@@ -15,11 +16,13 @@ namespace IndexFund.Common.WebApi.Controllers
     {
         private readonly IMapper mapper;
         private readonly IFundRepository fundRepository;
+        private readonly ProblemDetailsFactory problemDetailsFactory;
 
-        public FundController(IMapper mapper, IFundRepository fundRepository)
+        public FundController(IMapper mapper, IFundRepository fundRepository, ProblemDetailsFactory problemDetailsFactory)
         {
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             this.fundRepository = fundRepository ?? throw new ArgumentNullException(nameof(fundRepository));
+            this.problemDetailsFactory = problemDetailsFactory ?? throw new ArgumentNullException(nameof(problemDetailsFactory));
         }
 
         [HttpGet(Name = "GetFunds")]
@@ -29,7 +32,7 @@ namespace IndexFund.Common.WebApi.Controllers
             var previousLink = funds.HasPrevious ? CreateFundsResourceUri(fundResource, ResourceUriType.PreviousPage) : null;
             var nextLink = funds.HasNext ? CreateFundsResourceUri(fundResource, ResourceUriType.NextPage) : null;
             var currentLink = CreateFundsResourceUri(fundResource, ResourceUriType.Current);
-            var paginationMetadata = new PaginationMetadata(funds.TotalCount,funds.PageSize,funds.CurrentPage,previousLink,nextLink, currentLink);
+            var paginationMetadata = new PaginationMetadata(funds.TotalCount, funds.PageSize, funds.CurrentPage, previousLink, nextLink, currentLink);
 
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
             return base.Ok(mapper.Map<IEnumerable<FundDTO>>(funds));
@@ -41,16 +44,37 @@ namespace IndexFund.Common.WebApi.Controllers
             return Ok(mapper.Map<FundDTO>(await fundRepository.GetFundAsync(fundId)));
         }
 
-
-
         [HttpPost(Name = "CreateFund")]
-        public async Task<ActionResult<Entities.Fund>> CreateFundAsync(FundForCreationDTO fundForCreationDTO)
+        public async Task<ActionResult<Fund>> CreateFundAsync(FundForCreationDTO fundForCreationDTO)
         {
-            var newFund = mapper.Map<Entities.Fund>(fundForCreationDTO);
+            var newFund = mapper.Map<Fund>(fundForCreationDTO);
             await fundRepository.AddFundAsync(newFund);
             await fundRepository.SaveAsync();
 
             return CreatedAtRoute("GetFund", new { fundId = newFund.Id }, newFund);
+        }
+
+        [HttpPut("{fundId}", Name = "UpdateFund")]
+        public async Task<ActionResult<Fund>> UpdateFundAsync(int fundId, FundForUpdateDTO fundForUpdateDTO)
+        {
+            if (fundForUpdateDTO is null)
+            {
+                return NotFound();
+            }
+            var fund = await fundRepository.GetFundAsync(fundId);
+            if (fund == null)
+            {
+                return NotFound();
+            }
+            mapper.Map(fundForUpdateDTO, fund);
+            if (!await fundRepository.CheckFundNamesUniquenessAsync(fund))
+            {
+                return BadRequest(problemDetailsFactory.CreateProblemDetails(HttpContext,
+                    statusCode: 400,
+                    detail: "Provided fund names exists in database."));
+            }
+            await fundRepository.SaveAsync();
+            return NoContent();
         }
 
         private string? CreateFundsResourceUri(FundResourceParameters fundResourceParameters, ResourceUriType type)

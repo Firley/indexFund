@@ -52,6 +52,7 @@ namespace IndexFund.Common.WebApi
             builder.Services.AddScoped<IFundRepository, FundRepository>();
             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             builder.Services.AddScoped<IValidator<FundForCreationDTO>, FundForCreationDTOValidator>();
+            builder.Services.AddScoped<IValidator<FundForUpdateDTO>, FundForUpdateDTOValidator>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
