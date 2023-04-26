@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using System.Text.RegularExpressions;
 
-namespace IndexFund.Common.WebApi.Models.Validators
+namespace IndexFund.Common.WebApi.Models.Validators.FluentValidatiors
 {
     public class FundForUpdateDTOValidator : AbstractValidator<FundForUpdateDTO>
     {

@@ -4,7 +4,7 @@ using IndexFund.Common.WebApi;
 using IndexFund.Common.WebApi.Models;
 using System.Text.RegularExpressions;
 
-namespace IndexFund.Common.EntityModels.Validator
+namespace IndexFund.Common.WebApi.Models.Validators.FluentValidatiors
 {
     public class FundForCreationDTOValidator : AbstractValidator<FundForCreationDTO>
     {
