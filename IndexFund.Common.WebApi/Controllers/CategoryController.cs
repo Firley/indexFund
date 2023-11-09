@@ -30,13 +30,13 @@ namespace IndexFund.Common.WebApi.Controllers
             return Ok(mapper.Map<IEnumerable<CategoryDTO>>(await categoryRepository.GetCategoriesAsync()));
         }
 
-
         [HttpGet("{Id}", Name = "GetCategory")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCategory(int Id)
         {
             var category = await categoryRepository.GetCategoryAsync(Id);
+
             return category is null ? NotFound() : Ok(mapper.Map<CategoryDTO>(category));
         }
 
@@ -48,6 +48,7 @@ namespace IndexFund.Common.WebApi.Controllers
             var createdCategory = mapper.Map<Category>(category);
             if (await categoryRepository.CategoryExistsAsync(createdCategory))
             {
+
                 return BadRequest(
                 problemDetailsFactory.CreateProblemDetails(HttpContext,
                     statusCode: 406,
@@ -72,6 +73,7 @@ namespace IndexFund.Common.WebApi.Controllers
 
             if (await categoryRepository.CategoryExistsAsync(category))
             {
+
                 return BadRequest(
                 problemDetailsFactory.CreateProblemDetails(HttpContext,
                     statusCode: 400,
@@ -93,6 +95,7 @@ namespace IndexFund.Common.WebApi.Controllers
             }
             categoryRepository.DeleteCategory(category);
             await categoryRepository.SaveChangesAsync();
+           
             return NoContent();
         }
     }

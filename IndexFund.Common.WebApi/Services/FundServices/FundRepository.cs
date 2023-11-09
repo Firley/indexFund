@@ -28,6 +28,7 @@ namespace IndexFund.Common.WebApi.Services
             {
                 return false;
             }
+
             return true;
         }
 
@@ -52,6 +53,7 @@ namespace IndexFund.Common.WebApi.Services
                 var filterCategory = fundResource.CategoryName.Trim();
                 collection = collection.Where(f => f.Category.Name == fundResource.CategoryName);
             }
+
             if (!string.IsNullOrWhiteSpace(fundResource.SearchQuery))
             {
                 var searchQuery = fundResource.SearchQuery.Trim();
@@ -75,7 +77,6 @@ namespace IndexFund.Common.WebApi.Services
                     : collection.OrderByDescending(selectedColumn);
 
             }
-
 
             var totalItemCount = await collection.CountAsync();
 

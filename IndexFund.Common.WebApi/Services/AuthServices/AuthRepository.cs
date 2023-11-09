@@ -22,9 +22,7 @@ namespace IndexFund.Common.WebApi.Services
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-
         public bool SaveChanges() => fundDbContext.SaveChanges() >= 0;
-        private bool CheckIfUserExgists(User userTocCheck) => fundDbContext.Users.Any(u => u.Email == userTocCheck.Email);
 
         public bool RegisterUser(User userToCreate)
         {
@@ -32,8 +30,10 @@ namespace IndexFund.Common.WebApi.Services
             {
                 return false;
             }
+
             var user = fundDbContext.Add(userToCreate);
             fundDbContext.SaveChanges();
+
             return true;
         }
         public string ValidateUserCreditensials(FundUserCreditensialsDTO userCreditensialsDTO)
@@ -41,16 +41,18 @@ namespace IndexFund.Common.WebApi.Services
             var user = fundDbContext.Users
                 .Include(u => u.Role)
                 .FirstOrDefault(u => u.Email == userCreditensialsDTO.Email);
+
             if (user == null)
             {
                 return string.Empty;
             }
+
             var result = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, userCreditensialsDTO.Password);
+
             if (result == PasswordVerificationResult.Failed)
             {
                 return string.Empty;
             }
-
 
             var claimsForToken = new List<Claim>
             {
@@ -72,9 +74,13 @@ namespace IndexFund.Common.WebApi.Services
                 signingCredentials: signingCredentials);
 
             var tokenToReturn = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+
             return tokenToReturn;
         }
 
-
+        private bool CheckIfUserExgists(User userTocCheck)
+        {
+            return fundDbContext.Users.Any(u => u.Email == userTocCheck.Email);
+        }
     }
 }

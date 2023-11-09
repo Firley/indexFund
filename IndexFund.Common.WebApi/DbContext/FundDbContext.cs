@@ -5,9 +5,7 @@ namespace IndexFund.Common.WebApi
 {
     public class FundDbContext : DbContext
     {
-        public FundDbContext(DbContextOptions<FundDbContext> options) : base(options)
-        {
-        }
+        public FundDbContext(DbContextOptions<FundDbContext> options) : base(options) {}
 
         public DbSet<Fund> Funds { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -130,12 +128,11 @@ namespace IndexFund.Common.WebApi
             modelBuilder.Entity<Fund>().HasData(funds);
         }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-         => optionsBuilder
-        .LogTo(Console.WriteLine)
-        .EnableSensitiveDataLogging();
+        {
+            optionsBuilder
+                .LogTo(Console.WriteLine)
+                .EnableSensitiveDataLogging();
+        }
     }
-
-
 }

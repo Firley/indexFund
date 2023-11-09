@@ -35,6 +35,7 @@ namespace IndexFund.Common.WebApi.Controllers
             var paginationMetadata = new PaginationMetadata(funds.TotalCount, funds.PageSize, funds.CurrentPage, previousLink, nextLink, currentLink);
 
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
+            
             return base.Ok(mapper.Map<IEnumerable<FundDTO>>(funds));
         }
 
@@ -62,11 +63,14 @@ namespace IndexFund.Common.WebApi.Controllers
                 return NotFound();
             }
             var fund = await fundRepository.GetFundAsync(fundId);
+            
             if (fund == null)
             {
                 return NotFound();
             }
+            
             mapper.Map(fundForUpdateDTO, fund);
+            
             if (!await fundRepository.CheckFundNamesUniquenessAsync(fund))
             {
                 return BadRequest(problemDetailsFactory.CreateProblemDetails(HttpContext,
@@ -74,6 +78,7 @@ namespace IndexFund.Common.WebApi.Controllers
                     detail: "Provided fund names exists in database."));
             }
             await fundRepository.SaveAsync();
+            
             return NoContent();
         }
 

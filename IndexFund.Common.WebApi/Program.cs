@@ -54,7 +54,6 @@ namespace IndexFund.Common.WebApi
             builder.Services.AddScoped<IValidator<FundForCreationDTO>, FundForCreationDTOValidator>();
             builder.Services.AddScoped<IValidator<FundForUpdateDTO>, FundForUpdateDTOValidator>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -84,7 +83,6 @@ namespace IndexFund.Common.WebApi
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -94,8 +92,6 @@ namespace IndexFund.Common.WebApi
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();

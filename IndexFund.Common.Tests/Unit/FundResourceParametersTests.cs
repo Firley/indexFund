@@ -37,7 +37,6 @@ namespace IndexFund.Common.Tests.Unit
         {
             var fundsearchResource = new FundResourceParameters() { PageNumber = 0 };
             Assert.Equal(1, fundsearchResource.PageNumber);
-
         }
 
         [Fact]
@@ -45,7 +44,6 @@ namespace IndexFund.Common.Tests.Unit
         {
             var fundsearchResource = new FundResourceParameters() { OrderBy = "id" };
             Assert.Equal("ID", fundsearchResource.OrderBy);
-
         }
 
         [Fact]
@@ -53,8 +51,6 @@ namespace IndexFund.Common.Tests.Unit
         {
             var fundsearchResource = new FundResourceParameters() { OrderBy = "notExistingOrderBy" };
             Assert.Equal("NAME", fundsearchResource.OrderBy);
-
         }
-
     }
 }

@@ -10,7 +10,5 @@ namespace IndexFund.Common.WebApi.Profiles
             CreateMap<Models.CategoryForCreationDTO, Entities.Category>();
             CreateMap<Models.CategoryForUpdateDTO, Entities.Category>();
         }
-
-
     }
 }

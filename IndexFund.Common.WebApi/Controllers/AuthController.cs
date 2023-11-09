@@ -28,6 +28,7 @@ namespace IndexFund.Common.WebApi.Controllers
         {
             var user = mapper.Map<User>(registerUserDTO);
             user.PasswordHash = passwordHasher.HashPassword(user, registerUserDTO.Password);
+
             return authRepository.RegisterUser(user) ? NoContent() : BadRequest("One or more validation errors occurred.");
         }
 
@@ -40,9 +41,8 @@ namespace IndexFund.Common.WebApi.Controllers
             {
                 return Unauthorized("Incorrect email or password");
             }
+
             return Ok(token);
-
         }
-
     }
 }

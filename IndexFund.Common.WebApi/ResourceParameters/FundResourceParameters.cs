@@ -6,13 +6,17 @@ namespace IndexFund.Common.WebApi.ResourceParameters
     public class FundResourceParameters
     {
         const int maxPageSize = 10;
+
         const int minPageNumber = 1;
+
         private string[] allowedOrderByColumnNames = {nameof(Fund.Id),nameof(Fund.Name), nameof(Fund.Category), nameof(Fund.ShortName),};
 
         public string? CategoryName { get; set; }
+
         public string? SearchQuery { get; set; }
 
         private string? orderBy;
+
         public string? OrderBy
         {
             get { return orderBy; }
@@ -23,7 +27,9 @@ namespace IndexFund.Common.WebApi.ResourceParameters
             }
         }
         public SortDirection SortDirection { get; set; } = SortDirection.ASC;
+
         private int _pageNumber = 1;
+
         public int PageNumber
         {
             get => _pageNumber;
@@ -32,7 +38,6 @@ namespace IndexFund.Common.WebApi.ResourceParameters
 
         private int _pageSize = 10;
  
-
         public int PageSize
         {
             get => _pageSize;

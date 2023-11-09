@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 
-
 namespace IndexFund.Common.WebApi.Profiles
 {
     public class UserProfile : Profile
@@ -9,6 +8,5 @@ namespace IndexFund.Common.WebApi.Profiles
         {
             CreateMap<Models.FundUserForRegistrationDTO, Entities.User>();
         }
-
     }
 }

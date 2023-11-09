@@ -39,7 +39,6 @@ namespace IndexFund.Common.WebApi.Services
 
         public void DeleteCategory(Category categoryToDelete)
         {
-
             fundDbContext.Categories.Remove(categoryToDelete);
         }
     }

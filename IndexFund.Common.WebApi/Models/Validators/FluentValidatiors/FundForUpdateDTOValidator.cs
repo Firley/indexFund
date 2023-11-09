@@ -50,10 +50,12 @@ namespace IndexFund.Common.WebApi.Models.Validators.FluentValidatiors
                 .Matches(new Regex("[a-zA-Z]{3}"))
                 .Length(3)
                 .WithMessage("Incorrect internal currency code.");
+
             RuleFor(fund => fund.ExternalCurrency)
                  .Matches(new Regex("[a-zA-Z]{3}"))
                  .Length(3)
                 .WithMessage("Incorrect external currency code.");
+
             RuleFor(fund => fund.PayoutCurrency)
                 .Matches(new Regex("[a-zA-Z]{3}"))
                 .Length(3)
@@ -68,14 +70,12 @@ namespace IndexFund.Common.WebApi.Models.Validators.FluentValidatiors
             RuleFor(fund => fund.CategoryId).Custom((value, context) =>
             {
                 var IdExists = fundDbContext.Categories.All(c => c.Id != value);
+
                 if (IdExists)
                 {
                     context.AddFailure("CategoryId", "CategoryId doesn't exists");
                 }
-
             });
-
-
         }
     }
 }

@@ -6,6 +6,7 @@ namespace IndexFund.Common.WebApi.Models
     {
         [EmailAddress]
         public string Email { get; set; }
+
         [MinLength(6), MaxLength(64)]
         public string Password { get; set; }
     }
