@@ -15,6 +15,7 @@ namespace IndexFund.Common.WebApi
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+#if DEBUG
             Category[] categories = new Category[] {
                 new Category {Id = 1, Name = "Polish stocks" },
                 new Category {Id = 2, Name = "Foreign stocks" },
@@ -127,7 +128,7 @@ namespace IndexFund.Common.WebApi
             }
             modelBuilder.Entity<Fund>().HasData(funds);
         }
-
+#endif
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
