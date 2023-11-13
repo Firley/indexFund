@@ -8,8 +8,11 @@ namespace IndexFund.Common.WebApi
         public FundDbContext(DbContextOptions<FundDbContext> options) : base(options) {}
 
         public DbSet<Fund> Funds { get; set; }
+
         public DbSet<Category> Categories { get; set; }
+
         public DbSet<User> Users { get; set; }
+
         public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

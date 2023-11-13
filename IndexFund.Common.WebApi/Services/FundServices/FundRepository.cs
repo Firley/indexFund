@@ -75,7 +75,6 @@ namespace IndexFund.Common.WebApi.Services
                 collection = fundResource.SortDirection == SortDirection.ASC
                     ? collection.OrderBy(selectedColumn)
                     : collection.OrderByDescending(selectedColumn);
-
             }
 
             var totalItemCount = await collection.CountAsync();
