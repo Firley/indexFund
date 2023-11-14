@@ -2,11 +2,11 @@
 {
     public class FundForUpdateDTO
     {
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
 
-        public string ShortName { get; set; } = string.Empty;
+        public string ShortName { get; set; }
 
-        public string Benchmark { get; set; } = string.Empty;
+        public string Benchmark { get; set; }
 
         public int RiskLevel { get; set; }
 
@@ -20,11 +20,10 @@
 
         public decimal UnitPrice { get; set; }
 
-        public string InternalCurrency { get; set; } = "PLN";
+        public string InternalCurrency { get; set; } = null!;
 
-        public string ExternalCurrency { get; set; } = "PLN";
-
-        public string PayoutCurrency { get; set; } = "PLN";
+        public string ExternalCurrency { get; set; } = null!;
+        public string PayoutCurrency { get; set; } = null!;
 
         public DateTime FundStartDate { get; set; }
 

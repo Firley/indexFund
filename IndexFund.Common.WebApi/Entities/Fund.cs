@@ -8,12 +8,12 @@ namespace IndexFund.Common.WebApi.Entities
         public int Id { get; set; }
 
         [MaxLength(128)]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = null!;
 
         [MaxLength(64)]
-        public string ShortName { get; set; } = string.Empty;
+        public string ShortName { get; set; } = null!;
 
-        public string Benchmark { get; set; } = string.Empty;
+        public string Benchmark { get; set; } = null!;
 
         [Range(1, 5)]
         public int RiskLevel { get; set; }
@@ -36,11 +36,11 @@ namespace IndexFund.Common.WebApi.Entities
 
         public bool IsActive { get; set; } = false;
 
-        public string InternalCurrency { get; set; } = "PLN";
+        public string InternalCurrency { get; set; } = null!;
 
-        public string ExternalCurrency { get; set; } = "PLN";
+        public string ExternalCurrency { get; set; } = null!;
 
-        public string PayoutCurrency { get; set; } = "PLN";
+        public string PayoutCurrency { get; set; } = null!;
 
         public DateTime FundStartDate { get; set; }
 
