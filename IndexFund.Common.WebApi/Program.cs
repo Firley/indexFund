@@ -3,7 +3,6 @@ using FluentValidation.AspNetCore;
 using IndexFund.Common.WebApi.Entities;
 using IndexFund.Common.WebApi.Models;
 using IndexFund.Common.WebApi.Models.Validators.FluentValidatiors;
-using IndexFund.Common.WebApi.Repositories;
 using IndexFund.Common.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
