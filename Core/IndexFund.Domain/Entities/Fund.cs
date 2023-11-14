@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GloboTicket.TicketManagement.Domain.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace IndexFund.Domain.Entities
 {
-    public class Fund
+    public class Fund : AuditableEntity
     {
         public int Id { get; set; }
 

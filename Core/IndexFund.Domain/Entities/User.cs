@@ -1,6 +1,8 @@
-﻿namespace IndexFund.Domain.Entities
+﻿using GloboTicket.TicketManagement.Domain.Common;
+
+namespace IndexFund.Domain.Entities
 {
-    public class User
+    public class User : AuditableEntity
     {
         public Guid Id { get; set; }
 
