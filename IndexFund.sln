@@ -5,7 +5,13 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IndexFund.Common.WebApi", "IndexFund.Common.WebApi\IndexFund.Common.WebApi.csproj", "{37573804-2A1A-4C1D-A42F-ED164F47CA5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndexFund.Common.Tests", "IndexFund.Common.Tests\IndexFund.Common.Tests.csproj", "{E8BC2150-0448-4C3D-96FB-10BE730FFA61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IndexFund.Common.Tests", "IndexFund.Common.Tests\IndexFund.Common.Tests.csproj", "{E8BC2150-0448-4C3D-96FB-10BE730FFA61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F96A3AE6-1C6C-4222-82CB-4C29BAAFC004}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F495EDD4-525B-4511-ADE7-392A17C7A2E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{E7E99F17-5B27-4B0A-AD6A-FEA2DEE9138A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
