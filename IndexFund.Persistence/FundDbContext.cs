@@ -1,4 +1,5 @@
 ﻿using IndexFund.Common.WebApi.Entities;
+using IndexFund.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace IndexFund.Common.WebApi

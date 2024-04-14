@@ -1,5 +1,7 @@
-﻿using IndexFund.Common.WebApi.Entities;
+﻿using IndexFund.Common.WebApi;
+using IndexFund.Common.WebApi.Entities;
 using IndexFund.Common.WebApi.Models;
+using IndexFund.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

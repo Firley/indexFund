@@ -19,19 +19,14 @@ namespace IndexFund.Domain.Entities
         public int RiskLevel { get; set; }
 
         [Range(100, 5000)]
-        [Precision(7, 3)]
         public decimal FirstMinimalPayment { get; set; }
 
-        [Precision(7, 3)]
         public decimal MinimalPayment { get; set; }
 
-        [Precision(7, 3)]
         public decimal ManagementFee { get; set; }
 
-        [Precision(7, 3)]
         public decimal HandlingFee { get; set; }
 
-        [Precision(7, 3)]
         public decimal UnitPrice { get; set; }
 
         public bool IsActive { get; set; } = false;
