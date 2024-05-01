@@ -1,28 +1,22 @@
-﻿using IndexFund.Common.WebApi.Entities;
-using IndexFund.Common.WebApi.Helpers;
+﻿using IndexFund.Application.Contracts.Persistence;
+using IndexFund.Application.ResourceParameters;
 using IndexFund.Common.WebApi.ResourceParameters;
+using IndexFund.Domain.Entities;
+using IndexFund.Persistence.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace IndexFund.Persistence.Repositories
 {
-    public class FundRepository : IFundRepository
+    public class FundRepository : BaseRepository<Fund>, IFundRepository
     {
-        private readonly FundDbContext fundDbContext;
-
-        public FundRepository(FundDbContext fundDbContext)
-        {
-            this.fundDbContext = fundDbContext ?? throw new ArgumentNullException(nameof(fundDbContext));
-        }
-
-        public async Task AddFundAsync(Fund fundToAdd)
-        {
-            await fundDbContext.Funds.AddAsync(fundToAdd);
+        public FundRepository(FundDbContext fundDbContext) : base(fundDbContext) 
+        { 
         }
 
         public async Task<bool> CheckFundNamesUniquenessAsync(Fund fundToUpdate)
         {
-            if (await fundDbContext.Funds.Where(f => f.Id != fundToUpdate.Id)
+            if (await dbContext.Funds.Where(f => f.Id != fundToUpdate.Id)
                 .AnyAsync(f => f.Name == fundToUpdate.Name || f.ShortName == fundToUpdate.ShortName))
             {
                 return false;
@@ -31,21 +25,11 @@ namespace IndexFund.Persistence.Repositories
             return true;
         }
 
-        public async Task<bool> SaveAsync()
+        public Task<List<Fund?>> GetFundsAsync(FundResourceParameters fundResource)
         {
-            return await fundDbContext.SaveChangesAsync() >= 0;
-        }
-
-        public async Task<Fund?> GetFundAsync(int fundId)
-        {
-            return await fundDbContext.Funds.Include(f => f.Category).FirstOrDefaultAsync(f => f.Id == fundId);
-        }
-
-        public async Task<PagedList<Fund?>> GetFundsAsync(FundResourceParameters fundResource)
-        {
-            var collection = fundDbContext.Funds
-                .Where(f => f.IsActive == true)
-                .Include(f => f.Category) as IQueryable<Entities.Fund>;
+            var collection = dbContext.Funds
+                           .Where(f => f.IsActive == true)
+                           .Include(f => f.Category) as IQueryable<Entities.Fund>;
 
             if (!string.IsNullOrWhiteSpace(fundResource.CategoryName))
             {

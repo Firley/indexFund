@@ -1,11 +1,13 @@
-﻿namespace IndexFund.Application.Contracts.Persistence
+﻿using IndexFund.Application.ResourceParameters;
+using IndexFund.Common.WebApi.ResourceParameters;
+using IndexFund.Domain.Entities;
+
+namespace IndexFund.Application.Contracts.Persistence
 {
-    public interface IFundRepository
+    public interface IFundRepository : IAsyncRepository<Fund>
     {
-        Task AddFundAsync(Fund fundToAdd);
         Task<bool> CheckFundNamesUniquenessAsync(Fund fundToUpdate);
-        Task<Fund?> GetFundAsync(int fundId);
-        Task<PagedList<Fund?>> GetFundsAsync(FundResourceParameters fundResourceParameters);
-        Task<bool> SaveAsync();
+
+        Task<List<Fund?>> GetFundsAsync(FundResourceParameters fundResourceParameters);
     }
 }

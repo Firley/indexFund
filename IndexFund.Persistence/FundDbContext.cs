@@ -1,12 +1,11 @@
-﻿using IndexFund.Common.WebApi.Entities;
-using IndexFund.Domain.Entities;
+﻿using IndexFund.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace IndexFund.Common.WebApi
+namespace IndexFund.Persistence
 {
     public class FundDbContext : DbContext
     {
-        public FundDbContext(DbContextOptions<FundDbContext> options) : base(options) {}
+        public FundDbContext(DbContextOptions<FundDbContext> options) : base(options) { }
 
         public DbSet<Fund> Funds { get; set; }
 
@@ -39,7 +38,7 @@ namespace IndexFund.Common.WebApi
             };
             modelBuilder.Entity<Role>().HasData(roles);
 
-            List<Fund>funds = new List<Fund>()
+            List<Fund> funds = new List<Fund>()
             {
                 new Fund {Id =1, Name="Index Fund S&P500 Vanguard QQQ USD",ShortName="S&P500 Vanguard QQQ USD",Benchmark="Vanguard S&P 500 ETF",RiskLevel=3,FirstMinimalPayment=500, MinimalPayment=100, ManagementFee=0.5M, HandlingFee=1,UnitPrice=100,IsActive=true,InternalCurrency="PLN",ExternalCurrency="USD",PayoutCurrency="PLN", FundStartDate=DateTime.Now.AddDays(-30), CategoryId=2},
                 new Fund {Id =2, Name="Index Fund SSPDR S&P 500 ETF Trust",ShortName="SSPDR S&P 500 ETF Trust",Benchmark="SSPDR S&P 500 ETF Trust",RiskLevel=3,FirstMinimalPayment=100, MinimalPayment=100, ManagementFee=0.7M, HandlingFee=1,UnitPrice=200,IsActive=true,InternalCurrency="PLN",ExternalCurrency="USD",PayoutCurrency="PLN", FundStartDate=DateTime.Now.AddDays(-30), CategoryId=2},
@@ -64,7 +63,7 @@ namespace IndexFund.Common.WebApi
             {
                 funds.Add(new Fund
                 {
-                    Id = funds.Max(f=> f.Id)+1,
+                    Id = funds.Max(f => f.Id) + 1,
                     Name = "Index Fund Polish stocks " + i,
                     ShortName = "Index Polish stocks " + i,
                     Benchmark = "Vanguard S&P 500 ETF" + i,
@@ -78,7 +77,7 @@ namespace IndexFund.Common.WebApi
                     InternalCurrency = "PLN",
                     ExternalCurrency = "USD",
                     PayoutCurrency = "PLN",
-                    FundStartDate = DateTime.Now.AddDays(-999+i),
+                    FundStartDate = DateTime.Now.AddDays(-999 + i),
                     CategoryId = 1
                 }
                 ); ;
@@ -87,7 +86,7 @@ namespace IndexFund.Common.WebApi
             {
                 funds.Add(new Fund
                 {
-                    Id = funds.Max( f=> f.Id)+1,
+                    Id = funds.Max(f => f.Id) + 1,
                     Name = "Index Fund Mixed funds " + i,
                     ShortName = "Index Mixed funds " + i,
                     Benchmark = "Foreign bonds ETF" + i,
@@ -101,7 +100,7 @@ namespace IndexFund.Common.WebApi
                     InternalCurrency = "PLN",
                     ExternalCurrency = "PLN",
                     PayoutCurrency = "PLN",
-                    FundStartDate = DateTime.Now.AddDays(-350+i),
+                    FundStartDate = DateTime.Now.AddDays(-350 + i),
                     CategoryId = 5
                 }
                 ); ;
@@ -111,7 +110,7 @@ namespace IndexFund.Common.WebApi
             {
                 funds.Add(new Fund
                 {
-                    Id = funds.Max(f=> f.Id)+1,
+                    Id = funds.Max(f => f.Id) + 1,
                     Name = "Index Fund Foreign bonds " + i,
                     ShortName = "Index Foreign bonds " + i,
                     Benchmark = "Foreign bonds ETF" + i,
