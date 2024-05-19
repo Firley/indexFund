@@ -1,5 +1,4 @@
 ﻿using IndexFund.Application.ResourceParameters;
-using IndexFund.Common.WebApi.ResourceParameters;
 using IndexFund.Domain.Entities;
 
 namespace IndexFund.Application.Contracts.Persistence
